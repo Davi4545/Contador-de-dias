@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contador de Namoro</title>
+  <style>
+    body {
+      background: #ffe6f0;
+      color: #c2185b;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 30px 10px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    #contador {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .emoji {
+      font-size: 1.8rem;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    <span class="emoji">💘</span>
+    Contador de Dias de Namoro
+    <span class="emoji">💘</span>
+  </h1>
+
+  <div id="contador">Carregando...</div>
+
+  <script>
+    const dataInicio = new Date('2025-01-11T00:00:00');
+
+    function atualizarContador() {
+      const agora = new Date();
+      const diferenca = agora - dataInicio;
+
+      const segundos = Math.floor(diferenca / 1000);
+      const minutos = Math.floor(segundos / 60);
+      const horas = Math.floor(minutos / 60);
+      const dias = Math.floor(horas / 24);
+
+      const restoHoras = horas % 24;
+      const restoMinutos = minutos % 60;
+      const restoSegundos = segundos % 60;
+
+      const texto = `${dias} dias, ${restoHoras} horas, ${restoMinutos} minutos e ${restoSegundos} segundos.`;
+      document.getElementById("contador").textContent = texto;
+    }
+
+    atualizarContador();
+    setInterval(atualizarContador, 1000);
+  </script>
+</body>
+</html>
